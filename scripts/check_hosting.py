@@ -36,7 +36,7 @@ def validate_rules(rules):
 
 def main():
     request = urllib.request.Request(URL, headers={'Accept': 'application/vnd.github+json',
-                                     'User-Agent': 'File-Review-hosting-check'})
+                                     'User-Agent': 'Feed-LLM-Less-hosting-check'})
     try:
         with urllib.request.urlopen(request, timeout=20) as response:
             rules = json.load(response)

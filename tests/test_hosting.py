@@ -1,7 +1,11 @@
+import contextlib
 import copy
+import io
+import json
 import unittest
+from unittest.mock import patch
 
-from scripts.check_hosting import CHECKS, validate_rules
+from scripts.check_hosting import CHECKS, main, validate_rules
 
 
 def protected_rules():
@@ -15,6 +19,16 @@ def protected_rules():
 
 
 class HostingProtectionTests(unittest.TestCase):
+    def test_request_uses_the_new_name_without_changing_settings(self):
+        response = io.BytesIO(json.dumps(protected_rules()).encode())
+        with patch('scripts.check_hosting.urllib.request.urlopen', return_value=response) as fetch:
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(main(), 0)
+        request = fetch.call_args.args[0]
+        self.assertEqual(request.get_header('User-agent'), 'Feed-LLM-Less-hosting-check')
+        self.assertEqual(request.get_method(), 'GET')
+        self.assertEqual(fetch.call_args.kwargs, {'timeout': 20})
+
     def test_unprotected_branch_is_rejected(self):
         self.assertTrue(validate_rules([]))
 

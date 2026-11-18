@@ -13,6 +13,10 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 3
+    # setuptools 83+ needs Python 3.10; keep Python 3.9 support.
+    ignore:
+      - dependency-name: setuptools
+        versions: [">=83"]
     groups:
       compatible-build-tools:
         update-types: [minor, patch]

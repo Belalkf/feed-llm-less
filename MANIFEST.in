@@ -1,0 +1,8 @@
+include LICENSE README.md CHANGELOG.md CONTRIBUTING.md SECURITY.md AGENTS.md
+recursive-include feed_llm_less *.html *.css *.js
+recursive-include tests *.py *.cjs
+recursive-include docs *.md *.png
+recursive-include examples *.json
+include pyproject.toml setup.cfg
+recursive-include scripts *.py
+recursive-include skills *.md

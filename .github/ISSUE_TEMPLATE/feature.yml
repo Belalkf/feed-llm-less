@@ -1,0 +1,10 @@
+name: Feature request
+description: Explain a user problem and a small, useful improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would this help you do?
+      description: Explain what you do now and any effect on privacy or computer resources.
+    validations:
+      required: true

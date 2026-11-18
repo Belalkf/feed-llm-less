@@ -17,6 +17,8 @@ updates:
     ignore:
       - dependency-name: setuptools
         versions: [">=83"]
+        # Keep the tested build minimum; security updates still apply.
+        update-types: ["version-update:semver-major"]
     groups:
       compatible-build-tools:
         update-types: [minor, patch]
